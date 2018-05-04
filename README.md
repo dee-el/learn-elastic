@@ -1,6 +1,6 @@
 # learn-elastic
 
-First of all, elastic search and JVM must be already installed
+First of all, elasticsearch version 6.2.x and JVM must be already installed
 
 How to use:
 - Install module packages -- npm install
