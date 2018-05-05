@@ -10,12 +10,23 @@ const CreateIndex = async (indexName) => {
             index: indexName,
             body: {
                 mappings: {
-                    "_doc": {
+                    _doc: {
                         properties: {
                             name: {
                                 type: "text",
-                                analyzer: "autocomplete", 
-                                search_analyzer: "standard" 
+                                analyzer: "standard",
+                                search_analyzer: "standard",
+                                fields: {
+                                    keyword: {
+                                        type: "text", 
+                                        analyzer: "keyword"
+                                    },
+                                    autocomplete: {
+                                        type: "text", 
+                                        analyzer: "autocomplete",
+                                        search_analyzer: "autocomplete" 
+                                    }
+                                }
                             },
                         }
                     }
@@ -23,33 +34,50 @@ const CreateIndex = async (indexName) => {
                 settings: {
                     analysis: {
                         filter: {
-                            "autocomplete_filter": {
-                                "type": "ngram",
-                                "min_gram": 3,
-                                "max_gram": 10
+                            keyword_edge_ngram: {
+                                type: "edge_ngram",
+                                min_gram: 3,
+                                max_gram: 10,
+                                side: "front",
+                                token_chars: [
+                                    "letter",
+                                    "digit",
+                                ]
                             },
-                            "indonesian_stop": {
-                                "type": "stop",
-                                "stopwords":  "_indonesian_" 
+                            indonesian_stop: {
+                                type: "stop",
+                                stopwords: "_indonesian_" 
                             },
-                            "indonesian_stemmer": {
-                                "type": "stemmer",
-                                "language":   "indonesian"
+                            indonesian_stemmer: {
+                                type: "stemmer",
+                                language: "indonesian"
                             }
                         },
+                        tokenizer: {
+                            keyword_analyzer: {
+                                type: "keyword"
+                            },
+                        },
                         analyzer: {
-                            "autocomplete": { 
+                            autocomplete: { 
                                 type: "custom",
                                 tokenizer: "standard",
                                 filter: [
                                     "lowercase",
                                     "standard",
-                                    "autocomplete_filter",
+                                    "keyword_edge_ngram",
                                     "indonesian_stop",
-                                    "indonesian_keywords",
-                                    "indonesian_stemmer"
+                                    "indonesian_stemmer",
                                 ]
-                            }
+                            },
+                            keyword: {
+                                type: "custom",
+                                tokenizer: "keyword_analyzer",
+                                filter: [
+                                    "lowercase"
+                                ]
+                            },
+
                         }
                     }
                   }

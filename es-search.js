@@ -13,16 +13,17 @@ const Search = async (keyword) => {
             index: 'badwords',
             type: '_doc',
             body: {
-                "from" : 0, 
-                "size" : 20,
-                "query": {
-                    "match_phrase": {
-                        "name": {
-                            "query": keyword
-                        }
+                from : 0, 
+                size : 20,
+                query: {
+                    multi_match: {
+                        query: keyword,
+                        fields: [
+                            "name", "name.autocomplete", "name.keyword^10"
+                        ]
                     }
                 },
-                "terminate_after": 1000
+                terminate_after: 1000
             }
         });
     } catch (error) {
