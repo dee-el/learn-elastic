@@ -24,7 +24,12 @@ const CreateIndex = async (indexName) => {
                                     autocomplete: {
                                         type: "text", 
                                         analyzer: "autocomplete",
-                                        search_analyzer: "autocomplete" 
+                                        search_analyzer: "standard" 
+                                    },
+                                    edge_ngram: {
+                                        type: "text",
+                                        analyzer: "edge_ngram",
+                                        search_analyzer: "edge_ngram"
                                     }
                                 }
                             },
@@ -34,6 +39,20 @@ const CreateIndex = async (indexName) => {
                 settings: {
                     analysis: {
                         filter: {
+                            whitespace_remove: {
+                                type: "pattern_replace",
+                                pattern: " ",
+                                replacement: ""
+                            },
+                            keyword_ngram: {
+                                type: "ngram",
+                                min_gram: 3,
+                                max_gram: 10,
+                                token_chars: [
+                                    "letter",
+                                    "digit",
+                                ]
+                            },
                             keyword_edge_ngram: {
                                 type: "edge_ngram",
                                 min_gram: 3,
@@ -54,7 +73,7 @@ const CreateIndex = async (indexName) => {
                             }
                         },
                         tokenizer: {
-                            keyword_analyzer: {
+                            keyword_tokenizer: {
                                 type: "keyword"
                             },
                         },
@@ -65,16 +84,40 @@ const CreateIndex = async (indexName) => {
                                 filter: [
                                     "lowercase",
                                     "standard",
+                                    "keyword_ngram",
+                                    "indonesian_stop",
+                                    "indonesian_stemmer",
+                                    "whitespace_remove"
+                                ]
+                            },
+                            edge_ngram: {
+                                type: "custom",
+                                tokenizer: "standard",
+                                filter: [
+                                    "lowercase",
                                     "keyword_edge_ngram",
                                     "indonesian_stop",
                                     "indonesian_stemmer",
+                                    "whitespace_remove"
+                                ]
+                            },
+                            keyword_edge_ngram: {
+                                type: "custom",
+                                tokenizer: "keyword_tokenizer",
+                                filter: [
+                                    "lowercase",
+                                    "keyword_edge_ngram",
+                                    "indonesian_stop",
+                                    "indonesian_stemmer",
+                                    "whitespace_remove"
                                 ]
                             },
                             keyword: {
                                 type: "custom",
-                                tokenizer: "keyword_analyzer",
+                                tokenizer: "keyword_tokenizer",
                                 filter: [
-                                    "lowercase"
+                                    "lowercase",
+                                    "whitespace_remove"
                                 ]
                             },
 

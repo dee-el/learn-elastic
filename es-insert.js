@@ -21,7 +21,8 @@ const badWords = [
     'shopeeacc','telkomsel','TELKOMSEL','telkomsel','Telkomsel','topup',
     'Topup Game','TOPUP PULSA','Uber','UBER','Uber Aktic','uber aktif',
     'UBER(aktif)','UBER AKTIF','UBER  AKTIF','UBER AKTIF ','UBER-AKTIF',
-    'uber aktiv','UBER AKTIVE','UBERDRE-','UBER GREF AKTIF','UBER KE GRAB','UBER SKTIF'
+    'uber aktiv','UBER AKTIVE','UBERDRE-','UBER GREF AKTIF','UBER KE GRAB','UBER SKTIF',
+    'SALDO', 'pulsa', 'PAKET', 'motor', 'televisi', 'kantor pusat', 'pusat', 'kantor'
 ];
 
 

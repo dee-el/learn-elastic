@@ -14,14 +14,28 @@ const Search = async (keyword) => {
             type: '_doc',
             body: {
                 from : 0, 
-                size : 20,
+                size : 5,
                 query: {
+                    // bool: {
+                    //     should: [
+                    //         {match: {"name.autocomplete": keyword}},
+                    //         {match: {"name.keyword": keyword}},
+                    //         {match: {"name": keyword}},
+                    //     ],
+                    //     minimum_should_match: 1
+                    // }
                     multi_match: {
                         query: keyword,
-                        fields: [
-                            "name", "name.autocomplete", "name.keyword^10"
-                        ]
-                    }
+                        fields: [ 
+                          "name",
+                          "name.edge_ngram",
+                          "name.autocomplete",
+                          "name.keyword",
+                        ],
+                        "type": "best_fields" ,
+                        "tie_breaker": 0.5,
+                    },
+                    
                 },
                 terminate_after: 1000
             }
@@ -42,8 +56,6 @@ const ProcessEngine = async (keyword) => {
             resArrObj.map(obj => {
                 console.log(obj);
             });
-
-            console.log(resArrObj.length);
         }
 
         return true;
@@ -61,4 +73,4 @@ const ProcessEngine = async (keyword) => {
 // BulkInsert();
 
 
-ProcessEngine('telkomsel').then(() => Promise.resolve());
+ProcessEngine('bri').then(() => Promise.resolve());
