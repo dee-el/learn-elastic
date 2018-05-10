@@ -16,14 +16,6 @@ const Search = async (keyword) => {
                 from : 0, 
                 size : 5,
                 query: {
-                    // bool: {
-                    //     should: [
-                    //         {match: {"name.autocomplete": keyword}},
-                    //         {match: {"name.keyword": keyword}},
-                    //         {match: {"name": keyword}},
-                    //     ],
-                    //     minimum_should_match: 1
-                    // }
                     multi_match: {
                         query: keyword,
                         fields: [ 
@@ -69,8 +61,8 @@ const ProcessEngine = async (keyword) => {
  */
 
 // DeleteIndex('badwords');
-// CreateIndex('badwords');
+CreateIndex('badwords');
 // BulkInsert();
 
 
-ProcessEngine('bri').then(() => Promise.resolve());
+// ProcessEngine('bri').then(() => Promise.resolve());

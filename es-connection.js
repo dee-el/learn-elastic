@@ -9,7 +9,10 @@ Client.ping({
     requestTimeout: 1000
 }).then(() => {
     console.log(`It's Okay`);
-}).catch(err => console.log(err));
+}).catch(err => {
+    console.log(`It's not okay`);
+    return Promise.reject(err);
+});
 
 module.exports = {
     Client
