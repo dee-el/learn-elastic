@@ -3,7 +3,7 @@ const Client = require('./es-connection').Client;
 const badWords = [
     'aktif', 'berhasil',
     'aktifasi','gojek','Gojek','Go jek',
-    'Go-jek','GOJEK','GO JEK','GO-JEK','GOJEK ','gojek','GOJEK','GOJEK','GOJEK AKTIF',
+    'Go-jek','GOJEK','GO JEK','GO-JEK','gojek','GOJEK','GOJEK','GOJEK AKTIF',
     'gojek bro','Go-jek/Go-pay','Go-jek/GO-pay','GO-JEK/GO-PAY','Gojek/Grab',
     'gopay','Gopay',
     'gopayfazz',
@@ -28,7 +28,7 @@ const badWords = [
     'tsell', 'tv',
     'pt ','p.t','p.t.','kfc','mcdonald','shopback','blibli','lazada','burgerking','burger king',
     'pizza','pizza hut','7 eleven','subway','taco bell','carrefour', 'pay tren', 'paypro', 'pay pro',
-    'payfazz', 'giant', 'hypermart', 'uniqlo', 'tukar'
+    'payfazz', 'giant', 'hypermart', 'uniqlo', 'tukar', 'bonus'
 ];
 
 
