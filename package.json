@@ -9,6 +9,7 @@
   "author": "David Lienardy <davidlienardy1@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "elasticsearch": "^14.2.2"
+    "elasticsearch": "^14.2.2",
+    "lodash": "^4.17.10"
   }
 }

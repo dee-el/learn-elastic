@@ -57,11 +57,17 @@ const CreateIndex = async (indexName) => {
                                 "pattern": "[^a-zA-Z0-9]",
                                 "replacement": ""
                             },
+                            "spacing_digit_after_unit_word": {
+                                "type": "pattern_replace",
+                                "pattern": "(\\d)(puluh|ratus|ribu|juta|milyar|miliar|triliun|rupiah)",
+                                "replacement": "$1 $2"
+                            },
                             "mapping_alpha_num": {
                                 "type": "mapping",
                                 "mappings": [
                                     "0 => o",
                                     "1 => i",
+                                    "2 => z",
                                     "3 => e",
                                     "4 => a",
                                     "5 => s",
@@ -69,9 +75,10 @@ const CreateIndex = async (indexName) => {
                                     "7 => t",
                                     "8 => b",
                                     "9 => g",
+                                    "12 => r",
                                     "13 => b"
                                 ]
-                              }
+                            }
                         },
                         "filter": {
                             "edge_ngram": {
@@ -113,13 +120,13 @@ const CreateIndex = async (indexName) => {
                                 "type": "custom",
                                 "tokenizer": "standard",
                                 "char_filter": [
-                                    "special_char_remove"
+                                    "special_char_remove",
+                                    "spacing_digit_after_unit_word"
                                 ],
                                 "filter": [
                                     "lowercase",
                                     "standard",
                                     "edge_ngram",
-                                    "ngram",
                                     "indonesian_stop",
                                     "indonesian_stemmer"
                                 ]
@@ -128,7 +135,8 @@ const CreateIndex = async (indexName) => {
                                 "type": "custom",
                                 "tokenizer": "standard",
                                 "char_filter": [
-                                    "special_char_remove"
+                                    "special_char_remove",
+                                    "spacing_digit_after_unit_word"
                                 ],
                                 "filter": [
                                     "lowercase",
@@ -154,12 +162,12 @@ const CreateIndex = async (indexName) => {
                                 "tokenizer": "standard",
                                 "char_filter": [
                                     "special_char_remove",
-                                    "mapping_alpha_num"
+                                    "mapping_alpha_num",
+                                    "spacing_digit_after_unit_word"
                                 ],
                                 "filter": [
                                     "lowercase",
                                     "edge_ngram",
-                                    "ngram",
                                     "indonesian_stop",
                                     "indonesian_stemmer"
                                 ]

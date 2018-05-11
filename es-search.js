@@ -61,8 +61,8 @@ const ProcessEngine = async (keyword) => {
  */
 
 // DeleteIndex('badwords');
-CreateIndex('badwords');
-// BulkInsert();
+// CreateIndex('badwords');
+BulkInsert();
 
 
 // ProcessEngine('bri').then(() => Promise.resolve());
