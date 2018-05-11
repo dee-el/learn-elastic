@@ -18,7 +18,7 @@ const badWords = [
     'trima','b0nus','g0pay','bankgopay', 'acktive','jabar','mocas','mocash',
     'mocashbri', 'point', 'tunai', 'driver','pemenang', 'gojekgopay','gojekgrab',
     'ind0nesia','indonesia','customer','grafari','grapari',
-    'tsel','kulkas','hadiya', 'kontol','kejutan','kupon','mobil',
+    'tsel','kulkas','kontol','kejutan','kupon','mobil', 'hadiah',
     'paket', 'uang', 'pembayaran','listrik','token', 'melayani',
     'bpjs','topup','tiket','transfer', 'bank', 'kereta',
     'daftar', 'poin', 'haji', 
