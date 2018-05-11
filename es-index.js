@@ -66,7 +66,10 @@ const CreateIndex = async (indexName) => {
                                     "4 => a",
                                     "5 => s",
                                     "6 => g",
-                                    "7 => t"
+                                    "7 => t",
+                                    "8 => b",
+                                    "9 => g",
+                                    "13 => b"
                                 ]
                               }
                         },
